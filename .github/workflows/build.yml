@@ -13,6 +13,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Descomprimir zip si existe
+        run: |
+          shopt -s nullglob
+          for z in *.zip; do
+            echo "Descomprimiendo $z"
+            unzip -o "$z" -d proyecto
+          done
+
       - name: Localizar proyecto
         id: find
         run: |
